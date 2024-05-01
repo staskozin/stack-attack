@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4ejjvn8xvhi0"]
+
+[ext_resource type="Texture2D" uid="uid://kr5iyx86eetf" path="res://assets/background.png" id="1_e46rr"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_qxsgs"]
+[ext_resource type="PackedScene" uid="uid://c67ial3utdvgg" path="res://scenes/player.tscn" id="3_vn846"]
+[ext_resource type="PackedScene" uid="uid://blofktwfqwydb" path="res://scenes/col.tscn" id="5_l3nc8"]
+[ext_resource type="PackedScene" uid="uid://caigshxydusyn" path="res://scenes/row.tscn" id="5_ob4u0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0j1e"]
+size = Vector2(192, 952)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yj22"]
+size = Vector2(1920, 129)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_qxsgs")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_e46rr")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls" groups=["wall"]]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2(96, 476)
+shape = SubResource("RectangleShape2D_k0j1e")
+
+[node name="Floor" type="StaticBody2D" parent="Walls" groups=["floor"]]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Floor"]
+position = Vector2(960, 1016)
+shape = SubResource("RectangleShape2D_1yj22")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls" groups=["wall"]]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2(1824, 476)
+shape = SubResource("RectangleShape2D_k0j1e")
+
+[node name="Player" parent="." instance=ExtResource("3_vn846")]
+position = Vector2(960, 870)
+
+[node name="Row" parent="." instance=ExtResource("5_ob4u0")]
+position = Vector2(960, 890)
+
+[node name="Columns" type="Node2D" parent="."]
+position = Vector2(960, 0)
+
+[node name="Col1" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(-704, 0)
+
+[node name="Col2" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(-576, 0)
+num = 1
+
+[node name="Col3" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(-448, 0)
+num = 2
+
+[node name="Col4" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(-320, 0)
+num = 3
+
+[node name="Col5" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(-192, 0)
+num = 4
+
+[node name="Col6" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(-64, 0)
+num = 5
+
+[node name="Col7" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(64, 0)
+num = 6
+
+[node name="Col8" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(192, 0)
+num = 7
+
+[node name="Col9" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(320, 0)
+num = 8
+
+[node name="Col10" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(448, 0)
+num = 9
+
+[node name="Col11" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(576, 0)
+num = 10
+
+[node name="Col12" parent="Columns" instance=ExtResource("5_l3nc8")]
+position = Vector2(704, 0)
+num = 11
+
+[node name="Boxes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Spawner" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Spawner" to="." method="_on_spawner_timeout"]

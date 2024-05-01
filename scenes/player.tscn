@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c67ial3utdvgg"]
+
+[ext_resource type="Texture2D" uid="uid://7grohg6modgq" path="res://assets/idle.png" id="1_f4rx6"]
+[ext_resource type="Texture2D" uid="uid://bark6563ifm6j" path="res://assets/walk1.png" id="2_47wev"]
+[ext_resource type="Texture2D" uid="uid://kt63u1fr7ok6" path="res://assets/walk2.png" id="3_m1pkm"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="4_maqla"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_beetg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f4rx6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_47wev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m1pkm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_imvlw"]
+radius = 40.0
+height = 154.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("4_maqla")
+speed = 400.0
+jump_height = 128.0
+jump_time_to_peak = 0.35
+jump_time_to_descent = 0.3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_beetg")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_imvlw")

@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://bblfjdph65yk4"]
+
+[ext_resource type="Script" path="res://scripts/box.gd" id="1_k8qtc"]
+[ext_resource type="Texture2D" uid="uid://dxwa4ppv4o5qt" path="res://assets/box1.png" id="2_pnetw"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_p0ddi"]
+[ext_resource type="Script" path="res://scripts/states/box/idle.gd" id="4_oeou6"]
+[ext_resource type="Script" path="res://scripts/states/box/move_down.gd" id="5_xmb8s"]
+[ext_resource type="Script" path="res://scripts/states/box/move_left.gd" id="6_geox4"]
+[ext_resource type="Script" path="res://scripts/states/box/exploding.gd" id="6_rj1cc"]
+[ext_resource type="Script" path="res://scripts/states/box/move_right.gd" id="7_0bujp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dehl2"]
+size = Vector2(128, 128)
+
+[sub_resource type="Gradient" id="Gradient_7tcvo"]
+colors = PackedColorArray(0.627451, 0.427451, 0.239216, 1, 0.733333, 0.517647, 0.301961, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxx8y"]
+size = Vector2(122, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxauu"]
+size = Vector2(1, 122)
+
+[node name="Box" type="AnimatableBody2D" groups=["box"]]
+collision_mask = 0
+script = ExtResource("1_k8qtc")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_pnetw")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dehl2")
+
+[node name="Explosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.43
+randomness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 20.78
+scale_amount_max = 35.0
+color_ramp = SubResource("Gradient_7tcvo")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="DEBUG" type="VBoxContainer" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Position" type="Label" parent="DEBUG"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="State" type="Label" parent="DEBUG"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="FieldPos" type="Label" parent="DEBUG"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="ToFieldPos" type="Label" parent="DEBUG"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("3_p0ddi")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_oeou6")
+
+[node name="MoveDown" type="Node" parent="StateMachine"]
+script = ExtResource("5_xmb8s")
+
+[node name="MoveLeft" type="Node" parent="StateMachine"]
+script = ExtResource("6_geox4")
+
+[node name="MoveRight" type="Node" parent="StateMachine"]
+script = ExtResource("7_0bujp")
+
+[node name="Exploding" type="Node" parent="StateMachine"]
+script = ExtResource("6_rj1cc")
+
+[node name="BottomSide" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="BottomSide"]
+position = Vector2(0, 64.5)
+shape = SubResource("RectangleShape2D_lxx8y")
+
+[node name="LeftSide" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="LeftSide"]
+position = Vector2(-64.5, 0)
+shape = SubResource("RectangleShape2D_dxauu")
+
+[node name="RightSide" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="RightSide"]
+position = Vector2(64.5, 0)
+shape = SubResource("RectangleShape2D_dxauu")
+
+[connection signal="body_entered" from="BottomSide" to="." method="_on_bottom_side_body_entered"]
