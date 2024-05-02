@@ -1,10 +1,17 @@
 extends CharacterBody2D
 
 
+signal health_changed(h: int)
+
+
 @export var speed: float = 200.0
 @export var jump_height: float
 @export var jump_time_to_peak: float
 @export var jump_time_to_descent: float
+
+
+var health: int = 3
+
 
 var _jump_buffer: float = 0.0
 var _coyote_time: float = 0.0
@@ -56,6 +63,15 @@ func jump() -> void:
 	velocity.y = jump_velocity
 
 
+func hit() -> void:
+	health -= 1
+	health_changed.emit(health)
+	if health > 0:
+		stun()
+	else:
+		die()
+
+
 func stun() -> void:
 	if not _stunned:
 		velocity = Vector2.ZERO
@@ -63,7 +79,17 @@ func stun() -> void:
 		%StunParticles.restart()
 		%StunParticles.visible = true
 		%StunParticles.emitting = true
-	_stunned = 2
+	_stunned = 2.0
+
+
+func die() -> void:
+	_stunned = 2.0
+	velocity = Vector2.ZERO
+	%Sprite.visible = false
+	%StunParticles.visible = false
+	%DeathParticles.emitting = true
+	await get_tree().create_timer(1.5).timeout
+	queue_free()
 
 
 func _get_gravity() -> float:
