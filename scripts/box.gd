@@ -10,7 +10,7 @@ var to_y: int
 
 
 func _ready() -> void:
-	$Texture.texture = ResourceLoader.load("res://assets/box" + str(randi_range(1, 3)) + ".png")
+	$Texture.texture = ResourceLoader.load("res://assets/box" + str(randi_range(1, 4)) + ".png")
 
 
 func destroy() -> void:
