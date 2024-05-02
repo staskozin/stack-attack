@@ -8,8 +8,8 @@ extends CharacterBody2D
 
 var _jump_buffer: float = 0.0
 var _coyote_time: float = 0.0
+var _stunned: float = 0.0
 var _on_floor: bool = false
-var _stunned: bool = false
 
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -43,6 +43,12 @@ func _physics_process(delta: float) -> void:
 		_jump_buffer -= delta
 	if _coyote_time > 0.0:
 		_coyote_time -= delta
+	if _stunned > 0.0:
+		_stunned -= delta
+	else:
+		%StunParticles.visible = false
+		%StunParticles.emitting = false
+		_stunned = 0.0
 	move_and_slide()
 
 
@@ -52,16 +58,12 @@ func jump() -> void:
 
 func stun() -> void:
 	if not _stunned:
-		_stunned = true
 		velocity = Vector2.ZERO
 		%Sprite.play("stun")
 		%StunParticles.restart()
 		%StunParticles.visible = true
 		%StunParticles.emitting = true
-		await get_tree().create_timer(2).timeout
-		_stunned = false
-		%StunParticles.visible = false
-		%StunParticles.emitting = false
+	_stunned = 2
 
 
 func _get_gravity() -> float:
