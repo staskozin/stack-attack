@@ -9,6 +9,7 @@ extends CharacterBody2D
 var _jump_buffer: float = 0.0
 var _coyote_time: float = 0.0
 var _on_floor: bool = false
+var _stunned: bool = false
 
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -17,11 +18,12 @@ var _on_floor: bool = false
 
 func _physics_process(delta: float) -> void:
 	# Передвижение по горизонтали
-	velocity.x = _get_input_velocity() * speed
+	if not _stunned:
+		velocity.x = _get_input_velocity() * speed
 	# Прыжок и гравитация
 	velocity.y += _get_gravity() * delta
 	if is_on_floor():
-		if _jump_buffer > 0.0 or Input.is_action_just_pressed("input_up"):
+		if _jump_buffer > 0.0 or (Input.is_action_just_pressed("input_up") and not _stunned):
 			jump()
 			_jump_buffer = 0.0
 		_coyote_time = 0.0
@@ -30,10 +32,10 @@ func _physics_process(delta: float) -> void:
 		if _on_floor:
 			_coyote_time = 0.1
 			_jump_buffer = 0.0
-		if _coyote_time > 0.0 and Input.is_action_just_pressed("input_up"):
+		if _coyote_time > 0.0 and (Input.is_action_just_pressed("input_up") and not _stunned):
 			jump()
 			_coyote_time = 0.0
-		if Input.is_action_just_pressed("input_up"):
+		if (Input.is_action_just_pressed("input_up") and not _stunned):
 			_jump_buffer = 0.1
 			_coyote_time = 0.0
 		_on_floor = false
@@ -46,6 +48,20 @@ func _physics_process(delta: float) -> void:
 
 func jump() -> void:
 	velocity.y = jump_velocity
+
+
+func stun() -> void:
+	if not _stunned:
+		_stunned = true
+		velocity = Vector2.ZERO
+		%Sprite.play("stun")
+		%StunParticles.restart()
+		%StunParticles.visible = true
+		%StunParticles.emitting = true
+		await get_tree().create_timer(2).timeout
+		_stunned = false
+		%StunParticles.visible = false
+		%StunParticles.emitting = false
 
 
 func _get_gravity() -> float:
