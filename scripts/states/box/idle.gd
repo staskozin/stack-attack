@@ -29,7 +29,7 @@ func _on_right_side_body_entered(body: PhysicsBody2D) -> void:
 	var coords: Vector2i = Vector2i(root.x, root.y)
 	if Field.is_top_left_in_state(coords, ["MoveDown"]) \
 	or not Field.is_top_empty(coords) \
-	and Field.is_top_in_state(coords, ["Idle"]):
+	and Field.is_top_in_state(coords, ["Idle", "MoveRight", "MoveLeft"]):
 		return
 	if (Field.is_left_empty(coords) \
 	or Field.is_left_in_state(coords, ["MoveLeft"])) \
@@ -45,7 +45,7 @@ func _on_left_side_body_entered(body: PhysicsBody2D) -> void:
 	var coords: Vector2i = Vector2i(root.x, root.y)
 	if Field.is_top_right_in_state(coords, ["MoveDown"]) \
 	or not Field.is_top_empty(coords) \
-	and Field.is_top_in_state(coords, ["Idle"]):
+	and Field.is_top_in_state(coords, ["Idle", "MoveRight", "MoveLeft"]):
 		return
 	if (Field.is_right_empty(coords) \
 	or Field.is_right_in_state(coords, ["MoveRight"])) \
