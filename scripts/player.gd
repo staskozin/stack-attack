@@ -100,6 +100,7 @@ func die() -> void:
 	%Sprite.visible = false
 	%StunParticles.visible = false
 	%DeathParticles.emitting = true
+	%Eyes.visible = false
 	await get_tree().create_timer(1.5).timeout
 	queue_free()
 
