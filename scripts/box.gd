@@ -30,6 +30,6 @@ func is_in_state(state: String) -> bool:
 
 func _on_bottom_side_body_entered(body: PhysicsBody2D) -> void:
 	if body.name == "Player":
-		if body.velocity.y <= 100.0:
+		if body.destroy_timer < 0.0:
 			body.hit()
 		destroy()

@@ -11,6 +11,7 @@ signal health_changed(h: int)
 
 
 var health: int = 3
+var destroy_timer: float = 0.0
 
 
 var _jump_buffer: float = 0.0
@@ -54,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		_jump_buffer -= delta
 	if _coyote_time > 0.0:
 		_coyote_time -= delta
+	if destroy_timer > 0.0:
+		destroy_timer -= delta
 	if _stunned > 0.0:
 		_stunned -= delta
 	else:
@@ -66,6 +69,7 @@ func _physics_process(delta: float) -> void:
 
 
 func jump() -> void:
+	destroy_timer = jump_time_to_peak
 	velocity.y = jump_velocity
 
 
