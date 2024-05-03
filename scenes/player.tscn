@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c67ial3utdvgg"]
+[gd_scene load_steps=15 format=3 uid="uid://c67ial3utdvgg"]
 
 [ext_resource type="Texture2D" uid="uid://7grohg6modgq" path="res://assets/idle.png" id="1_f4rx6"]
 [ext_resource type="Texture2D" uid="uid://bark6563ifm6j" path="res://assets/walk1.png" id="2_47wev"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_maqla"]
 [ext_resource type="Texture2D" uid="uid://bubi82droxmge" path="res://assets/star.png" id="6_0ukwe"]
 [ext_resource type="Texture2D" uid="uid://cj5kylo3q7581" path="res://assets/blood.png" id="7_p7wmb"]
+[ext_resource type="Texture2D" uid="uid://bkrp6askji6r6" path="res://assets/eye.svg" id="8_ufx2b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_beetg"]
 animations = [{
@@ -48,6 +49,38 @@ colors = PackedColorArray(1, 1, 0.329412, 1, 1, 1, 1, 1)
 [sub_resource type="Gradient" id="Gradient_a1ldb"]
 colors = PackedColorArray(1, 0, 0, 1, 0.356863, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_1xb5i"]
+resource_name = "rotate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Eyes/RightEye:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.35619, -3.92699]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Eyes/LeftEye:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_netme"]
+_data = {
+"rotate": SubResource("Animation_1xb5i")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("4_maqla")
@@ -59,6 +92,24 @@ jump_time_to_descent = 0.3
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_beetg")
+animation = &"stun"
+
+[node name="Eyes" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(17, -16)
+
+[node name="LeftEye" type="Sprite2D" parent="Eyes"]
+position = Vector2(-33, 1.12501)
+rotation = 6.28319
+texture = ExtResource("8_ufx2b")
+offset = Vector2(-1.90735e-06, -1.125)
+
+[node name="RightEye" type="Sprite2D" parent="Eyes"]
+position = Vector2(0, 0.999999)
+rotation = -3.92699
+texture = ExtResource("8_ufx2b")
+offset = Vector2(0, -1)
+flip_h = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -113,3 +164,8 @@ scale_amount_min = 0.3
 scale_amount_max = 0.3
 color = Color(1, 0, 0, 1)
 color_ramp = SubResource("Gradient_a1ldb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_netme")
+}

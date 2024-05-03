@@ -23,6 +23,10 @@ var _on_floor: bool = false
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 
+func _ready() -> void:
+	$AnimationPlayer.get_animation("rotate").loop_mode = Animation.LOOP_LINEAR
+
+
 func _physics_process(delta: float) -> void:
 	# Передвижение по горизонтали
 	if not _stunned:
@@ -55,6 +59,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		%StunParticles.visible = false
 		%StunParticles.emitting = false
+		$AnimationPlayer.stop()
+		%Eyes.visible = false
 		_stunned = 0.0
 	move_and_slide()
 
@@ -76,6 +82,8 @@ func stun() -> void:
 	if not _stunned:
 		velocity = Vector2.ZERO
 		%Sprite.play("stun")
+		%Eyes.visible = true
+		$AnimationPlayer.play("rotate")
 		%StunParticles.restart()
 		%StunParticles.visible = true
 		%StunParticles.emitting = true
