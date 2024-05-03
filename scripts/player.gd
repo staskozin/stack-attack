@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -12,6 +13,8 @@ signal health_changed(h: int)
 
 var health: int = 3
 var destroy_timer: float = 0.0
+var moving_left: bool = false
+var moving_right: bool = false
 
 
 var _jump_buffer: float = 0.0
@@ -115,11 +118,15 @@ func _get_input_velocity() -> float:
 		%Sprite.play("walk")
 		%Sprite.flip_h = true
 		horizontal -= 1.0
+		moving_left = true
 	elif Input.is_action_pressed("input_right"):
 		%Sprite.play("walk")
 		%Sprite.flip_h = false
 		horizontal += 1.0
+		moving_right = true
 	else:
 		%Sprite.play("default")
 		%Sprite.flip_h = false
+		moving_left = false
+		moving_right = false
 	return horizontal

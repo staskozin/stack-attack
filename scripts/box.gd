@@ -7,10 +7,17 @@ var x: int
 var y: int
 var to_x: int
 var to_y: int
+var player_on_left: bool = false
+var player_on_right: bool = false
+var player: Player = null
 
 
 func _ready() -> void:
 	$Texture.texture = ResourceLoader.load("res://assets/box" + str(randi_range(1, 4)) + ".png")
+	%LeftSide.body_entered.connect(_on_left_side_body_entered)
+	%RightSide.body_entered.connect(_on_right_side_body_entered)
+	%LeftSide.body_exited.connect(_on_left_side_body_exited)
+	%RightSide.body_exited.connect(_on_right_side_body_exited)
 
 
 func destroy() -> void:
@@ -33,3 +40,27 @@ func _on_bottom_side_body_entered(body: PhysicsBody2D) -> void:
 		if body.destroy_timer < 0.0:
 			body.hit()
 		destroy()
+
+
+func _on_left_side_body_entered(body: PhysicsBody2D) -> void:
+	if body.name == "Player":
+		player_on_left = true
+		player = body
+
+
+func _on_right_side_body_entered(body: PhysicsBody2D) -> void:
+	if body.name == "Player":
+		player_on_right = true
+		player = body
+
+
+func _on_left_side_body_exited(body: PhysicsBody2D) -> void:
+	if body.name == "Player":
+		player_on_left = false
+		player = null
+
+
+func _on_right_side_body_exited(body: PhysicsBody2D) -> void:
+	if body.name == "Player":
+		player_on_right = false
+		player = null
