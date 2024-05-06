@@ -41,6 +41,12 @@ shape = SubResource("RectangleShape2D_1yj22")
 position = Vector2(1824, 476)
 shape = SubResource("RectangleShape2D_k0j1e")
 
+[node name="Ceiling" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Ceiling"]
+position = Vector2(960, -9)
+shape = SubResource("RectangleShape2D_1yj22")
+
 [node name="Columns" type="Node2D" parent="."]
 position = Vector2(960, 0)
 
@@ -97,11 +103,15 @@ position = Vector2(960, 890)
 [node name="Boxes" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="Cranes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
 [node name="Player" parent="." instance=ExtResource("3_vn846")]
 unique_name_in_owner = true
 position = Vector2(960, 888)
 
 [node name="Spawner" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]

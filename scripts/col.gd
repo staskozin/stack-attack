@@ -14,7 +14,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 	if body.is_in_group("box"):
 		stored += 1
 	if stored >= 6:
-		col_filled.emit(num)
+		Field.legal_columns.erase(num)
 		is_free = false
 
 
@@ -22,5 +22,6 @@ func _on_body_exited(body: PhysicsBody2D) -> void:
 	if body.is_in_group("box"):
 		stored -= 1
 	if stored < 6 and not is_free:
-		col_freed.emit(num)
+		Field.legal_columns.append(num)
+		Field.legal_columns.sort()
 		is_free = true

@@ -13,7 +13,6 @@ var player: Player = null
 
 
 func _ready() -> void:
-	$Texture.texture = ResourceLoader.load("res://assets/box" + str(randi_range(1, 4)) + ".png")
 	%LeftSide.body_entered.connect(_on_left_side_body_entered)
 	%RightSide.body_entered.connect(_on_right_side_body_entered)
 	%LeftSide.body_exited.connect(_on_left_side_body_exited)

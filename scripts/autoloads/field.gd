@@ -7,6 +7,7 @@ var height: int = 7
 var start_x: int = 256
 var start_y: int = 120
 var tile_size: int = 128
+var legal_columns: Array = range(0, width)
 
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func reset() -> void:
 	for i in range(width):
 		field[i] = []
 		field[i].resize(height)
+	legal_columns = range(0, width)
 
 
 func get_tile_position(v: Vector2i) -> Vector2i:
