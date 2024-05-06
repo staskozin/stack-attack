@@ -36,10 +36,10 @@ func is_in_state(state: String) -> bool:
 
 
 func _on_bottom_side_body_entered(body: PhysicsBody2D) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and not player_on_left and not player_on_right:
+		destroy()
 		if body.destroy_timer < 0.0:
 			body.hit()
-		destroy()
 
 
 func _on_left_side_body_entered(body: PhysicsBody2D) -> void:
