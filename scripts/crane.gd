@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 					dropped = true
 				else:
 					drop_to_column = sliced.pick_random()
-		if position.x >= 2041:
+		if position.x >= 2141:
 			queue_free()
 	else:
 		position.x -= speed * delta
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 					dropped = true
 				else:
 					drop_to_column = sliced.pick_random()
-		if position.x <= -121:
+		if position.x <= -221:
 			queue_free()
 
 
