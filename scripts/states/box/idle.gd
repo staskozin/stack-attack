@@ -4,6 +4,7 @@ extends BoxState
 
 func enter() -> void:
 	root.position = Field.get_tile_position(Vector2i(root.x, root.y))
+	Field.destroy_matching_boxes()
 
 
 func physics_update(_delta: float) -> void:

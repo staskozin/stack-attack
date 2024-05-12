@@ -37,6 +37,23 @@ func move(object: AnimatableBody2D, to: Vector2i) -> void:
 		object.destroy()
 
 
+# Уничтожение ящиков
+# TODO: подумать как начислять очки
+
+func destroy_matching_boxes() -> void:
+	for b in get_matching_boxes():
+		b.destroy()
+
+
+func get_matching_boxes() -> Array[Box]:
+	var boxes: Array[Box] = []
+	for col in field:
+		if col[height - 1] == null or not col[height - 1] is Box:
+			return []
+		boxes.append(col[height - 1])
+	return boxes
+
+
 # Проверки на пустоту
 
 func is_top_empty(v: Vector2i) -> bool:
