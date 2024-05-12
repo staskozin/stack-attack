@@ -28,10 +28,13 @@ func get_tile_position(v: Vector2i) -> Vector2i:
 
 func move(object: AnimatableBody2D, to: Vector2i) -> void:
 	to = to.clamp(Vector2i(0, 0), Vector2i(width - 1, height - 1))
-	Field.field[object.x][object.y] = null
-	Field.field[to.x][to.y] = object
-	object.x = to.x
-	object.y = to.y
+	if Field.field[to.x][to.y] == null:
+		Field.field[object.x][object.y] = null
+		Field.field[to.x][to.y] = object
+		object.x = to.x
+		object.y = to.y
+	else:
+		object.destroy()
 
 
 # Проверки на пустоту
