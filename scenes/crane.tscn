@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/crane.gd" id="1_3lrpu"]
 [ext_resource type="Texture2D" uid="uid://yf0l8wdv7v72" path="res://assets/crane_top.svg" id="1_7gg8x"]
 [ext_resource type="Texture2D" uid="uid://cwqf5qdcmtbrd" path="res://assets/crane_hand.svg" id="1_870nk"]
-[ext_resource type="Texture2D" uid="uid://dxwa4ppv4o5qt" path="res://assets/box1.png" id="3_rwbcc"]
+[ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/box/brown0.png" id="4_8sdgp"]
 
 [sub_resource type="Animation" id="Animation_nwkd5"]
 resource_name = "drop"
@@ -70,7 +70,7 @@ libraries = {
 [node name="BoxTexture" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, 120)
-texture = ExtResource("3_rwbcc")
+texture = ExtResource("4_8sdgp")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 120)

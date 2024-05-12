@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bblfjdph65yk4"]
 
 [ext_resource type="Script" path="res://scripts/box.gd" id="1_k8qtc"]
-[ext_resource type="Texture2D" uid="uid://dxwa4ppv4o5qt" path="res://assets/box1.png" id="2_pnetw"]
+[ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/box/brown0.png" id="2_6qm8d"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_p0ddi"]
 [ext_resource type="Script" path="res://scripts/states/box/idle.gd" id="4_oeou6"]
 [ext_resource type="Script" path="res://scripts/states/box/move_down.gd" id="5_xmb8s"]
@@ -26,7 +26,7 @@ collision_mask = 0
 script = ExtResource("1_k8qtc")
 
 [node name="Texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_pnetw")
+texture = ExtResource("2_6qm8d")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dehl2")
@@ -53,6 +53,7 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [node name="DEBUG" type="VBoxContainer" parent="."]
+visible = false
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0

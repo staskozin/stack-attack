@@ -14,7 +14,8 @@ func _ready() -> void:
 	position.x = -121 if to_right else 2041
 	drop_to_column = Field.legal_columns.pick_random()
 	drop_position = Field.get_tile_position(Vector2i(drop_to_column, 0)).x
-	%BoxTexture.texture = ResourceLoader.load("res://assets/box" + str(randi_range(1, 4)) + ".png")
+	var colors = ["brown", "red", "green", "blue", "purple", "metal"]
+	%BoxTexture.texture = ResourceLoader.load("res://assets/box/" + colors.pick_random() + str(randi_range(0, 3)) + ".png")
 
 
 func _physics_process(delta: float) -> void:
