@@ -8,6 +8,7 @@ var x: int
 var y: int
 var to_x: int
 var to_y: int
+var color: String
 var player_on_left: bool = false
 var player_on_right: bool = false
 var player: Player = null
@@ -32,7 +33,9 @@ func _physics_process(_delta: float) -> void:
 
 
 func is_in_state(state: String) -> bool:
-	return $StateMachine.current_state.name.to_lower() == state.to_lower()
+	if not %StateMachine.current_state:
+		return false
+	return %StateMachine.current_state.name.to_lower() == state.to_lower()
 
 
 func _on_bottom_side_body_entered(body: PhysicsBody2D) -> void:

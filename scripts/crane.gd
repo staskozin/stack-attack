@@ -7,6 +7,7 @@ var to_right: bool = true
 var drop_to_column: int
 var drop_position: int
 var dropped: bool = false
+var box_color: String
 
 
 func _ready() -> void:
@@ -15,7 +16,8 @@ func _ready() -> void:
 	drop_to_column = Field.legal_columns.pick_random()
 	drop_position = Field.get_tile_position(Vector2i(drop_to_column, 0)).x
 	var colors = ["brown", "red", "green", "blue", "purple", "metal"]
-	%BoxTexture.texture = ResourceLoader.load("res://assets/box/" + colors.pick_random() + str(randi_range(0, 3)) + ".png")
+	box_color = colors.pick_random()
+	%BoxTexture.texture = ResourceLoader.load("res://assets/box/" + box_color + str(randi_range(0, 3)) + ".png")
 
 
 func _physics_process(delta: float) -> void:
@@ -56,6 +58,7 @@ func spawn_box() -> void:
 	$CollisionShape.queue_free()
 	var box: AnimatableBody2D = preload("res://scenes/box.tscn").instantiate()
 	box.get_node("Texture").texture = %BoxTexture.texture
+	box.color = box_color
 	box.position = Vector2(Field.start_x + Field.tile_size * drop_to_column, Field.start_y)
 	box.x = drop_to_column
 	box.y = 0

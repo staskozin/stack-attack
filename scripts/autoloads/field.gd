@@ -41,17 +41,61 @@ func move(object: AnimatableBody2D, to: Vector2i) -> void:
 # TODO: подумать как начислять очки
 
 func destroy_matching_boxes() -> void:
-	for b in get_matching_boxes():
+	for b in get_full_rows_of_boxes():
 		b.destroy()
+	var clusters: Dictionary = clusterize_boxes_by_color()
+	for color in clusters.keys():
+		for cluster in clusters[color]:
+			if len(cluster) >= 3 and cluster.all(func (b: Box): return b.is_in_state("Idle")):
+				for b in cluster:
+					b.destroy()
 
 
-func get_matching_boxes() -> Array[Box]:
+func get_full_rows_of_boxes() -> Array[Box]:
 	var boxes: Array[Box] = []
-	for col in field:
-		if col[height - 1] == null or not col[height - 1] is Box:
-			return []
-		boxes.append(col[height - 1])
+	for row in get_rows():
+		if row.all(func (b): return b is Box and b.is_in_state("Idle")):
+			boxes.append_array(row)
 	return boxes
+
+
+func get_rows() -> Array:
+	var rows: Array = []
+	for i in range(height):
+		var row: Array = []
+		for j in range(width):
+			row.append(field[j][i])
+		rows.append(row)
+	return rows
+
+
+func clusterize_boxes_by_color() -> Dictionary:
+	var visited: Array = []
+	var clusters: Dictionary = {}
+	for i in range(width):
+		visited.append([])
+		for j in range(height):
+			visited[i].append(false)
+	for x in range(width):
+		for y in range(height):
+			if not visited[x][y] and field[x][y] is Box:
+				var color: String = field[x][y].color
+				var cluster: Array = []
+				dfs(x, y, color, cluster, visited)
+				var key: String = str(color)
+				if not clusters.has(key):
+					clusters[key] = []
+				clusters[key].append(cluster)
+	return clusters
+
+
+func dfs(x: int, y: int, color: String, cluster: Array, visited: Array) -> void:
+	if x < 0 or x >= width or y < 0 or y >= height or visited[x][y] or not field[x][y] or field[x][y].color != color:
+		return
+	cluster.append(field[x][y])
+	visited[x][y] = true
+	for direction in [Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)]:
+		dfs(x + direction.x, y + direction.y, color, cluster, visited)
 
 
 # Проверки на пустоту
