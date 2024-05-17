@@ -14,6 +14,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # Спавнер
 func _on_spawner_timeout() -> void:
-	if not Field.legal_columns.is_empty():
+	if not Field.get_legal_columns().is_empty():
 		var crane: Node2D = preload("res://scenes/crane.tscn").instantiate()
 		%Cranes.add_child(crane)

@@ -13,7 +13,7 @@ var box_color: String
 func _ready() -> void:
 	to_right = randi() & 1
 	position.x = -121 if to_right else 2041
-	drop_to_column = Field.legal_columns.pick_random()
+	drop_to_column = Field.get_legal_columns().pick_random()
 	drop_position = Field.get_tile_position(Vector2i(drop_to_column, 0)).x
 	var colors = ["brown", "red", "green", "blue", "purple", "metal"]
 	box_color = colors.pick_random()
@@ -24,11 +24,12 @@ func _physics_process(delta: float) -> void:
 	if to_right:
 		position.x += speed * delta
 		if not dropped and position.x >= drop_position:
-			if Field.legal_columns.has(drop_to_column):
+			if Field.get_legal_columns().has(drop_to_column) \
+			and Field.is_col_has_empty_slot(drop_to_column):
 				spawn_box()
 			else:
 				var sliced: Array
-				sliced = Field.legal_columns.slice(drop_to_column + 1)
+				sliced = Field.get_legal_columns().slice(drop_to_column + 1)
 				if sliced.is_empty():
 					dropped = true
 				else:
@@ -38,11 +39,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		position.x -= speed * delta
 		if  not dropped and position.x <= drop_position:
-			if Field.legal_columns.has(drop_to_column):
+			if Field.get_legal_columns().has(drop_to_column) \
+			and Field.is_col_has_empty_slot(drop_to_column):
 				spawn_box()
 			else:
 				var sliced: Array
-				sliced = Field.legal_columns.slice(0, drop_to_column)
+				sliced = Field.get_legal_columns().slice(0, drop_to_column)
 				if sliced.is_empty():
 					dropped = true
 				else:

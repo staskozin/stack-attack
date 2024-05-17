@@ -7,7 +7,6 @@ var height: int = 7
 var start_x: int = 256
 var start_y: int = 120
 var tile_size: int = 128
-var legal_columns: Array = range(0, width)
 
 
 func _ready() -> void:
@@ -19,7 +18,6 @@ func reset() -> void:
 	for i in range(width):
 		field[i] = []
 		field[i].resize(height)
-	legal_columns = range(0, width)
 
 
 func get_tile_position(v: Vector2i) -> Vector2i:
@@ -99,6 +97,22 @@ func dfs(x: int, y: int, color: String, cluster: Array, visited: Array) -> void:
 
 
 # Проверки на пустоту
+
+func get_legal_columns() -> Array[int]:
+	var columns: Array[int] = []
+	for i in range(width):
+		var counter: int = 0
+		for j in range(1, height):
+			if field[i][j] != null:
+				counter += 1
+		if counter < height - 1:
+			columns.append(i)
+	return columns
+
+
+func is_col_has_empty_slot(col: int) -> bool:
+	return field[col][0] == null
+
 
 func is_top_empty(v: Vector2i) -> bool:
 	if v.y - 1 < 0:

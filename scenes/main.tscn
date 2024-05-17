@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4ejjvn8xvhi0"]
+[gd_scene load_steps=8 format=3 uid="uid://d4ejjvn8xvhi0"]
 
 [ext_resource type="Texture2D" uid="uid://kr5iyx86eetf" path="res://assets/background.png" id="1_e46rr"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qxsgs"]
 [ext_resource type="PackedScene" uid="uid://c67ial3utdvgg" path="res://scenes/player.tscn" id="3_vn846"]
-[ext_resource type="PackedScene" uid="uid://blofktwfqwydb" path="res://scenes/col.tscn" id="5_l3nc8"]
 [ext_resource type="Texture2D" uid="uid://b81pjq4yiv3fq" path="res://assets/heart.svg" id="6_b4otl"]
 [ext_resource type="Script" path="res://scripts/health_ui.gd" id="6_myx0r"]
 
@@ -45,56 +44,6 @@ shape = SubResource("RectangleShape2D_k0j1e")
 [node name="CollisionShape" type="CollisionShape2D" parent="Walls/Ceiling"]
 position = Vector2(960, -9)
 shape = SubResource("RectangleShape2D_1yj22")
-
-[node name="Columns" type="Node2D" parent="."]
-position = Vector2(960, 0)
-
-[node name="Col1" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(-704, 0)
-
-[node name="Col2" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(-576, 0)
-num = 1
-
-[node name="Col3" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(-448, 0)
-num = 2
-
-[node name="Col4" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(-320, 0)
-num = 3
-
-[node name="Col5" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(-192, 0)
-num = 4
-
-[node name="Col6" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(-64, 0)
-num = 5
-
-[node name="Col7" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(64, 0)
-num = 6
-
-[node name="Col8" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(192, 0)
-num = 7
-
-[node name="Col9" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(320, 0)
-num = 8
-
-[node name="Col10" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(448, 0)
-num = 9
-
-[node name="Col11" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(576, 0)
-num = 10
-
-[node name="Col12" parent="Columns" instance=ExtResource("5_l3nc8")]
-position = Vector2(704, 0)
-num = 11
 
 [node name="Boxes" type="Node2D" parent="."]
 unique_name_in_owner = true
