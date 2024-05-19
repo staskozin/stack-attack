@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4ejjvn8xvhi0"]
+[gd_scene load_steps=9 format=3 uid="uid://d4ejjvn8xvhi0"]
 
 [ext_resource type="Texture2D" uid="uid://kr5iyx86eetf" path="res://assets/background.png" id="1_e46rr"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qxsgs"]
@@ -11,6 +11,9 @@ size = Vector2(192, 952)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1yj22"]
 size = Vector2(1920, 129)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jeqbr"]
+polygon = PackedVector2Array(192, 952, 1728, 952, 1728, 0, 1760, 0, 1755, 978, 180, 970, 175, 0, 192, 0)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qxsgs")
@@ -44,6 +47,9 @@ shape = SubResource("RectangleShape2D_k0j1e")
 [node name="CollisionShape" type="CollisionShape2D" parent="Walls/Ceiling"]
 position = Vector2(960, -9)
 shape = SubResource("RectangleShape2D_1yj22")
+
+[node name="ParticlesCollider" type="LightOccluder2D" parent="Walls"]
+occluder = SubResource("OccluderPolygon2D_jeqbr")
 
 [node name="Boxes" type="Node2D" parent="."]
 unique_name_in_owner = true

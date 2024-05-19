@@ -60,6 +60,7 @@ func spawn_box() -> void:
 	$CollisionShape.queue_free()
 	var box: AnimatableBody2D = preload("res://scenes/box.tscn").instantiate()
 	box.get_node("Texture").texture = %BoxTexture.texture
+	box.get_node("Explosion").texture = ResourceLoader.load("res://assets/box/" + box_color + str(3) + ".png")
 	box.color = box_color
 	box.position = Vector2(Field.start_x + Field.tile_size * drop_to_column, Field.start_y)
 	box.x = drop_to_column

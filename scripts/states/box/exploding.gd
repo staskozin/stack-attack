@@ -11,6 +11,7 @@ func enter() -> void:
 	%RightSide.queue_free()
 	Field.field[root.x][root.y] = null
 	root.get_node("Texture").visible = false
-	root.get_node("Explosion").emitting = true
-	await get_tree().create_timer(0.3).timeout
+	var explosion: GPUParticles2D = root.get_node("Explosion")
+	explosion.emitting = true
+	await get_tree().create_timer(explosion.lifetime).timeout
 	root.queue_free()
