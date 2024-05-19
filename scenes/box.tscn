@@ -67,6 +67,7 @@ texture = ExtResource("2_6qm8d")
 shape = SubResource("RectangleShape2D_dehl2")
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
+z_index = 4096
 emitting = false
 amount = 7
 process_material = SubResource("ParticleProcessMaterial_jg4u5")
