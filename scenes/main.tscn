@@ -59,7 +59,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("3_vn846")]
 unique_name_in_owner = true
-position = Vector2(960, 871)
+position = Vector2(960, 760)
 
 [node name="Spawner" type="Timer" parent="."]
 wait_time = 2.0

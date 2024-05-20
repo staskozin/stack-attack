@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c67ial3utdvgg"]
+[gd_scene load_steps=22 format=3 uid="uid://c67ial3utdvgg"]
 
 [ext_resource type="Texture2D" uid="uid://7grohg6modgq" path="res://assets/sprites/player/idle.png" id="1_f4rx6"]
 [ext_resource type="Texture2D" uid="uid://bark6563ifm6j" path="res://assets/sprites/player/walk1.png" id="2_47wev"]
@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bubi82droxmge" path="res://assets/sprites/player/star.png" id="6_0ukwe"]
 [ext_resource type="Texture2D" uid="uid://cj5kylo3q7581" path="res://assets/sprites/player/blood.png" id="7_p7wmb"]
 [ext_resource type="Texture2D" uid="uid://bkrp6askji6r6" path="res://assets/sprites/player/eye.svg" id="8_ufx2b"]
+[ext_resource type="PackedScene" uid="uid://cw1bwa1oksje1" path="res://scenes/sound_queue.tscn" id="9_66stx"]
+[ext_resource type="AudioStream" uid="uid://b8ah53npy6ij5" path="res://assets/sounds/footsteps/footstep_1.ogg" id="10_sfdij"]
+[ext_resource type="AudioStream" uid="uid://coiwgphqsk3g4" path="res://assets/sounds/footsteps/footstep_2.ogg" id="11_p268t"]
+[ext_resource type="AudioStream" uid="uid://blyybtvpfrip5" path="res://assets/sounds/footsteps/footstep_3.ogg" id="12_mx1s5"]
+[ext_resource type="AudioStream" uid="uid://dk3h7we3sx3ac" path="res://assets/sounds/jumps/jump.ogg" id="13_hsccf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_beetg"]
 animations = [{
@@ -81,10 +86,28 @@ _data = {
 "rotate": SubResource("Animation_1xb5i")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_syqyw"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("10_sfdij")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_p268t")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_mx1s5")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pdapj"]
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("13_hsccf")
+stream_0/weight = 1.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("4_maqla")
-speed = 400.0
+speed = 350.0
 jump_height = 128.0
 jump_time_to_peak = 0.35
 jump_time_to_descent = 0.3
@@ -100,13 +123,12 @@ position = Vector2(17, -16)
 
 [node name="LeftEye" type="Sprite2D" parent="Eyes"]
 position = Vector2(-33, 1.12501)
-rotation = 6.28319
 texture = ExtResource("8_ufx2b")
 offset = Vector2(-1.90735e-06, -1.125)
 
 [node name="RightEye" type="Sprite2D" parent="Eyes"]
 position = Vector2(0, 0.999999)
-rotation = -3.92699
+rotation = 2.35619
 texture = ExtResource("8_ufx2b")
 offset = Vector2(0, -1)
 flip_h = true
@@ -169,3 +191,21 @@ color_ramp = SubResource("Gradient_a1ldb")
 libraries = {
 "": SubResource("AnimationLibrary_netme")
 }
+
+[node name="Footsteps" parent="." instance=ExtResource("9_66stx")]
+unique_name_in_owner = true
+count = 2
+delay = 0.45
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="Footsteps"]
+stream = SubResource("AudioStreamRandomizer_syqyw")
+volume_db = -2.0
+
+[node name="Jump" parent="." instance=ExtResource("9_66stx")]
+unique_name_in_owner = true
+count = 3
+delay = 0.0
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="Jump"]
+stream = SubResource("AudioStreamRandomizer_pdapj")
+volume_db = -5.0

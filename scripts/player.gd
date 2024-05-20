@@ -20,7 +20,7 @@ var moving_right: bool = false
 var _jump_buffer: float = 0.0
 var _coyote_time: float = 0.0
 var _stunned: float = 0.0
-var _on_floor: bool = false
+var _on_floor: bool = true
 
 @onready var jump_velocity: float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity: float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
@@ -42,6 +42,8 @@ func _physics_process(delta: float) -> void:
 			jump()
 			_jump_buffer = 0.0
 		_coyote_time = 0.0
+		if not _on_floor:
+			%Footsteps.play()
 		_on_floor = true
 	else:
 		if _on_floor:
@@ -74,6 +76,7 @@ func _physics_process(delta: float) -> void:
 func jump() -> void:
 	destroy_timer = jump_time_to_peak
 	velocity.y = jump_velocity
+	%Jump.play()
 
 
 func hit() -> void:
@@ -117,11 +120,15 @@ func _get_input_velocity() -> float:
 	if Input.is_action_pressed("input_left"):
 		%Sprite.play("walk")
 		%Sprite.flip_h = true
+		if _on_floor:
+			%Footsteps.play()
 		horizontal -= 1.0
 		moving_left = true
 	elif Input.is_action_pressed("input_right"):
 		%Sprite.play("walk")
 		%Sprite.flip_h = false
+		if _on_floor:
+			%Footsteps.play()
 		horizontal += 1.0
 		moving_right = true
 	else:
