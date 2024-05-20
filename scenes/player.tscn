@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://c67ial3utdvgg"]
 
-[ext_resource type="Texture2D" uid="uid://7grohg6modgq" path="res://assets/idle.png" id="1_f4rx6"]
-[ext_resource type="Texture2D" uid="uid://bark6563ifm6j" path="res://assets/walk1.png" id="2_47wev"]
-[ext_resource type="Texture2D" uid="uid://1loygtt56mdw" path="res://assets/stun.png" id="3_i87f1"]
-[ext_resource type="Texture2D" uid="uid://kt63u1fr7ok6" path="res://assets/walk2.png" id="3_m1pkm"]
+[ext_resource type="Texture2D" uid="uid://7grohg6modgq" path="res://assets/sprites/player/idle.png" id="1_f4rx6"]
+[ext_resource type="Texture2D" uid="uid://bark6563ifm6j" path="res://assets/sprites/player/walk1.png" id="2_47wev"]
+[ext_resource type="Texture2D" uid="uid://1loygtt56mdw" path="res://assets/sprites/player/stun.png" id="3_i87f1"]
+[ext_resource type="Texture2D" uid="uid://kt63u1fr7ok6" path="res://assets/sprites/player/walk2.png" id="3_m1pkm"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_maqla"]
-[ext_resource type="Texture2D" uid="uid://bubi82droxmge" path="res://assets/star.png" id="6_0ukwe"]
-[ext_resource type="Texture2D" uid="uid://cj5kylo3q7581" path="res://assets/blood.png" id="7_p7wmb"]
-[ext_resource type="Texture2D" uid="uid://bkrp6askji6r6" path="res://assets/eye.svg" id="8_ufx2b"]
+[ext_resource type="Texture2D" uid="uid://bubi82droxmge" path="res://assets/sprites/player/star.png" id="6_0ukwe"]
+[ext_resource type="Texture2D" uid="uid://cj5kylo3q7581" path="res://assets/sprites/player/blood.png" id="7_p7wmb"]
+[ext_resource type="Texture2D" uid="uid://bkrp6askji6r6" path="res://assets/sprites/player/eye.svg" id="8_ufx2b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_beetg"]
 animations = [{

@@ -17,7 +17,7 @@ func _ready() -> void:
 	drop_position = Field.get_tile_position(Vector2i(drop_to_column, 0)).x
 	var colors = ["brown", "red", "green", "blue", "purple", "metal"]
 	box_color = colors.pick_random()
-	%BoxTexture.texture = ResourceLoader.load("res://assets/box/" + box_color + str(randi_range(0, 3)) + ".png")
+	%BoxTexture.texture = ResourceLoader.load("res://assets/sprites/box/" + box_color + str(randi_range(0, 3)) + ".png")
 
 
 func _physics_process(delta: float) -> void:
@@ -60,7 +60,7 @@ func spawn_box() -> void:
 	$CollisionShape.queue_free()
 	var box: AnimatableBody2D = preload("res://scenes/box.tscn").instantiate()
 	box.get_node("Texture").texture = %BoxTexture.texture
-	box.get_node("Explosion").texture = ResourceLoader.load("res://assets/box/" + box_color + str(3) + ".png")
+	box.get_node("Explosion").texture = ResourceLoader.load("res://assets/sprites/box/" + box_color + str(3) + ".png")
 	box.color = box_color
 	box.position = Vector2(Field.start_x + Field.tile_size * drop_to_column, Field.start_y)
 	box.x = drop_to_column

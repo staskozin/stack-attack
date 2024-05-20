@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://bblfjdph65yk4"]
 
 [ext_resource type="Script" path="res://scripts/box.gd" id="1_k8qtc"]
-[ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/box/brown0.png" id="2_6qm8d"]
-[ext_resource type="Texture2D" uid="uid://bb3mf27vb76v0" path="res://assets/box/brown3.png" id="3_kwkaj"]
+[ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/sprites/box/brown0.png" id="2_6ru77"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_p0ddi"]
+[ext_resource type="Texture2D" uid="uid://bb3mf27vb76v0" path="res://assets/sprites/box/brown3.png" id="3_x6s4u"]
 [ext_resource type="Script" path="res://scripts/states/box/idle.gd" id="4_oeou6"]
 [ext_resource type="Script" path="res://scripts/states/box/move_down.gd" id="5_xmb8s"]
 [ext_resource type="Script" path="res://scripts/states/box/move_left.gd" id="6_geox4"]
@@ -61,7 +61,7 @@ collision_mask = 0
 script = ExtResource("1_k8qtc")
 
 [node name="Texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_6qm8d")
+texture = ExtResource("2_6ru77")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dehl2")
@@ -71,7 +71,7 @@ z_index = 4096
 emitting = false
 amount = 7
 process_material = SubResource("ParticleProcessMaterial_jg4u5")
-texture = ExtResource("3_kwkaj")
+texture = ExtResource("3_x6s4u")
 lifetime = 3.0
 one_shot = true
 explosiveness = 1.0

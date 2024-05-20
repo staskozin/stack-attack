@@ -1,8 +1,8 @@
 extends HBoxContainer
 
 
-@onready var heart: Resource = preload("res://assets/heart.svg")
-@onready var empty_heart: Resource = preload("res://assets/empty_heart.svg")
+@onready var heart: Resource = preload("res://assets/sprites/ui/heart.svg")
+@onready var empty_heart: Resource = preload("res://assets/sprites/ui/empty_heart.svg")
 
 
 func _ready() -> void:
