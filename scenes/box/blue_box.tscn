@@ -1,0 +1,12 @@
+[gd_scene load_steps=6 format=3 uid="uid://gp3argshqaw1"]
+
+[ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_np3e6"]
+[ext_resource type="Texture2D" uid="uid://dbfhyuy5lojj2" path="res://assets/sprites/box/blue0.png" id="2_3qsq0"]
+[ext_resource type="Texture2D" uid="uid://dvv57vjlc5su" path="res://assets/sprites/box/blue1.png" id="3_i2udj"]
+[ext_resource type="Texture2D" uid="uid://qeyixjtec5qd" path="res://assets/sprites/box/blue2.png" id="4_bmbt3"]
+[ext_resource type="Texture2D" uid="uid://clrbbjwhhg78c" path="res://assets/sprites/box/blue3.png" id="5_jsxjn"]
+
+[node name="BlueBox" instance=ExtResource("1_np3e6")]
+textures = Array[CompressedTexture2D]([ExtResource("2_3qsq0"), ExtResource("3_i2udj"), ExtResource("4_bmbt3"), ExtResource("5_jsxjn")])
+explosion_texture = ExtResource("5_jsxjn")
+color = "blue"

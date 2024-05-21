@@ -44,7 +44,7 @@ func destroy_matching_boxes() -> void:
 	var clusters: Dictionary = clusterize_boxes_by_color()
 	for color in clusters.keys():
 		for cluster in clusters[color]:
-			if len(cluster) >= 3 and cluster.all(func (b): return b.is_in_state("Idle")):
+			if len(cluster) >= 3 and cluster.all(func (b: Box): return b.is_in_state("Idle")):
 				for b in cluster:
 					b.destroy()
 
@@ -52,7 +52,7 @@ func destroy_matching_boxes() -> void:
 func get_full_rows_of_boxes() -> Array:
 	var boxes: Array = []
 	for row in get_rows():
-		if row.all(func (b): return (b is Box or b is MetalBox) and b.is_in_state("Idle")):
+		if row.all(func (b): return b is Box and b.is_in_state("Idle")):
 			boxes.append_array(row)
 	return boxes
 
@@ -76,7 +76,7 @@ func clusterize_boxes_by_color() -> Dictionary:
 			visited[i].append(false)
 	for x in range(width):
 		for y in range(height):
-			if not visited[x][y] and (field[x][y] is Box or field[x][y] is MetalBox):
+			if not visited[x][y] and field[x][y] is Box:
 				var color: String = field[x][y].color
 				var cluster: Array = []
 				dfs(x, y, color, cluster, visited)

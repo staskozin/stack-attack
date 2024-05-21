@@ -16,7 +16,7 @@ func physics_update(_delta: float) -> void:
 		root.to_y += 1
 		transitioned.emit(self, "MoveDown")
 		return
-	elif root.player and root.player_on_right:
+	elif root.player and root.player_on_right and not root.is_heavy:
 		if Field.is_top_left_in_state(coords, ["MoveDown"]) \
 		or not Field.is_top_empty(coords) \
 		and Field.is_top_in_state(coords, ["Idle", "MoveRight", "MoveLeft"]) \
@@ -28,7 +28,7 @@ func physics_update(_delta: float) -> void:
 		or Field.is_top_left_in_state(coords, ["MoveLeft"])):
 			root.to_x -= 1
 			transitioned.emit(self, "MoveLeft")
-	elif root.player and root.player_on_left:
+	elif root.player and root.player_on_left and not root.is_heavy:
 		if Field.is_top_right_in_state(coords, ["MoveDown"]) \
 		or not Field.is_top_empty(coords) \
 		and Field.is_top_in_state(coords, ["Idle", "MoveRight", "MoveLeft"]) \

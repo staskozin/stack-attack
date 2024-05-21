@@ -3,15 +3,21 @@ extends AnimatableBody2D
 
 
 @export var speed: int = 200
+## Если ящик тяжелый, то его нельзя толкать
+@export var is_heavy: bool = false
+@export var textures: Array[CompressedTexture2D]
+@export var explosion_texture: CompressedTexture2D
+## Уникален для каждого ящика во всей игре
+@export var color: String
 
 var x: int
 var y: int
 var to_x: int
 var to_y: int
-var color: String
 var player_on_left: bool = false
 var player_on_right: bool = false
 var player: Player = null
+var texture: CompressedTexture2D
 
 
 func _ready() -> void:
@@ -19,6 +25,12 @@ func _ready() -> void:
 	%RightSide.body_entered.connect(_on_right_side_body_entered)
 	%LeftSide.body_exited.connect(_on_left_side_body_exited)
 	%RightSide.body_exited.connect(_on_right_side_body_exited)
+	$Texture.texture = texture
+	$Explosion.texture = explosion_texture
+
+
+func init():
+	texture = textures.pick_random()
 
 
 func destroy() -> void:

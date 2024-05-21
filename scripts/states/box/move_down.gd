@@ -3,7 +3,7 @@ extends BoxState
 
 
 func physics_update(delta: float) -> void:
-	if root.player and root.player_on_right:
+	if root.player and root.player_on_right and not root.is_heavy:
 		var coords: Vector2i = Vector2i(root.x, root.y)
 		if (Field.is_left_empty(coords) \
 		or Field.is_left_in_state(coords, ["MoveLeft"])) \
@@ -15,7 +15,7 @@ func physics_update(delta: float) -> void:
 			root.to_x -= 1
 			transitioned.emit(self, "MoveLeft")
 			return
-	if root.player and root.player_on_left:
+	if root.player and root.player_on_left and not root.is_heavy:
 		var coords: Vector2i = Vector2i(root.x, root.y)
 		if (Field.is_left_empty(coords) \
 		or Field.is_right_in_state(coords, ["MoveRight"])) \

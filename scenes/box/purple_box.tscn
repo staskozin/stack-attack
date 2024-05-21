@@ -1,0 +1,12 @@
+[gd_scene load_steps=6 format=3 uid="uid://omjdq52yca3c"]
+
+[ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_ca2is"]
+[ext_resource type="Texture2D" uid="uid://douyqwkfhp8ef" path="res://assets/sprites/box/purple0.png" id="2_7hpnb"]
+[ext_resource type="Texture2D" uid="uid://bep6p2rgkegsu" path="res://assets/sprites/box/purple1.png" id="3_vafdk"]
+[ext_resource type="Texture2D" uid="uid://ur70vxibt7f5" path="res://assets/sprites/box/purple2.png" id="4_kw0b3"]
+[ext_resource type="Texture2D" uid="uid://ycsgh4dayk3t" path="res://assets/sprites/box/purple3.png" id="5_rwqdc"]
+
+[node name="PurpleBox" instance=ExtResource("1_ca2is")]
+textures = Array[CompressedTexture2D]([ExtResource("2_7hpnb"), ExtResource("3_vafdk"), ExtResource("4_kw0b3"), ExtResource("5_rwqdc")])
+explosion_texture = ExtResource("5_rwqdc")
+color = "purple"

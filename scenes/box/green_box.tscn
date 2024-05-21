@@ -1,0 +1,12 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkes4x6xqy7a5"]
+
+[ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_b5pt4"]
+[ext_resource type="Texture2D" uid="uid://b2a8mnvx454en" path="res://assets/sprites/box/green0.png" id="2_2llb1"]
+[ext_resource type="Texture2D" uid="uid://duc1011w0f6jw" path="res://assets/sprites/box/green1.png" id="3_kd3db"]
+[ext_resource type="Texture2D" uid="uid://dsn6fgr82k0k1" path="res://assets/sprites/box/green2.png" id="4_rkg1d"]
+[ext_resource type="Texture2D" uid="uid://ds6lhirdkimwj" path="res://assets/sprites/box/green3.png" id="5_3gibe"]
+
+[node name="GreenBox" instance=ExtResource("1_b5pt4")]
+textures = Array[CompressedTexture2D]([ExtResource("2_2llb1"), ExtResource("3_kd3db"), ExtResource("4_rkg1d"), ExtResource("5_3gibe")])
+explosion_texture = ExtResource("5_3gibe")
+color = "green"

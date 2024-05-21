@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://q8qresqbf7bw"]
+[gd_scene load_steps=18 format=3 uid="uid://bblfjdph65yk4"]
 
-[ext_resource type="Script" path="res://scripts/metal_box.gd" id="1_el74f"]
-[ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/sprites/box/brown0.png" id="2_oe6t3"]
-[ext_resource type="Texture2D" uid="uid://bb3mf27vb76v0" path="res://assets/sprites/box/brown3.png" id="3_adnh8"]
-[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="4_mexr3"]
-[ext_resource type="Script" path="res://scripts/states/metal_box/idle.gd" id="5_qjkc0"]
-[ext_resource type="Script" path="res://scripts/states/metal_box/move_down.gd" id="6_dshss"]
-[ext_resource type="Script" path="res://scripts/states/metal_box/exploding.gd" id="7_dmwky"]
+[ext_resource type="Script" path="res://scripts/box.gd" id="1_c0qjp"]
+[ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/sprites/box/brown0.png" id="2_v0i26"]
+[ext_resource type="Texture2D" uid="uid://bb3mf27vb76v0" path="res://assets/sprites/box/brown3.png" id="3_x52lm"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="4_jv8gc"]
+[ext_resource type="Script" path="res://scripts/states/box/idle.gd" id="5_fb50i"]
+[ext_resource type="Script" path="res://scripts/states/box/move_down.gd" id="6_t4yli"]
+[ext_resource type="Script" path="res://scripts/states/box/move_left.gd" id="7_aqxdo"]
+[ext_resource type="Script" path="res://scripts/states/box/move_right.gd" id="8_8rqxp"]
+[ext_resource type="Script" path="res://scripts/states/box/exploding.gd" id="9_ssejs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dehl2"]
 size = Vector2(128, 128)
@@ -51,15 +53,15 @@ collision_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxx8y"]
 size = Vector2(122, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnuru"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxauu"]
 size = Vector2(1, 122)
 
-[node name="MetalBox" type="AnimatableBody2D" groups=["box"]]
+[node name="Box" type="AnimatableBody2D"]
 collision_mask = 0
-script = ExtResource("1_el74f")
+script = ExtResource("1_c0qjp")
 
 [node name="Texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_oe6t3")
+texture = ExtResource("2_v0i26")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dehl2")
@@ -69,7 +71,7 @@ z_index = 4096
 emitting = false
 amount = 7
 process_material = SubResource("ParticleProcessMaterial_jg4u5")
-texture = ExtResource("3_adnh8")
+texture = ExtResource("3_x52lm")
 lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
@@ -104,17 +106,23 @@ theme_override_font_sizes/font_size = 14
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
-script = ExtResource("4_mexr3")
+script = ExtResource("4_jv8gc")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("5_qjkc0")
+script = ExtResource("5_fb50i")
 
 [node name="MoveDown" type="Node" parent="StateMachine"]
-script = ExtResource("6_dshss")
+script = ExtResource("6_t4yli")
+
+[node name="MoveLeft" type="Node" parent="StateMachine"]
+script = ExtResource("7_aqxdo")
+
+[node name="MoveRight" type="Node" parent="StateMachine"]
+script = ExtResource("8_8rqxp")
 
 [node name="Exploding" type="Node" parent="StateMachine"]
-script = ExtResource("7_dmwky")
+script = ExtResource("9_ssejs")
 
 [node name="BottomSide" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -132,7 +140,7 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape2D" parent="LeftSide"]
 position = Vector2(-64.5, 0)
-shape = SubResource("RectangleShape2D_cnuru")
+shape = SubResource("RectangleShape2D_dxauu")
 
 [node name="RightSide" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -141,6 +149,6 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape2D" parent="RightSide"]
 position = Vector2(64.5, 0)
-shape = SubResource("RectangleShape2D_cnuru")
+shape = SubResource("RectangleShape2D_dxauu")
 
 [connection signal="body_entered" from="BottomSide" to="." method="_on_bottom_side_body_entered"]

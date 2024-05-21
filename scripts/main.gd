@@ -1,6 +1,34 @@
 extends Node
 
 
+var object_pool: Array[Dictionary] = [
+	{
+		"object": preload("res://scenes/box/red_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/green_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/blue_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/purple_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/brown_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/metal_box.tscn"),
+		"weight": 1
+	},
+]
+
+
 func _ready() -> void:
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -16,4 +44,5 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_spawner_timeout() -> void:
 	if not Field.get_legal_columns().is_empty():
 		var crane: Node2D = preload("res://scenes/crane.tscn").instantiate()
+		crane.init(object_pool)
 		%Cranes.add_child(crane)
