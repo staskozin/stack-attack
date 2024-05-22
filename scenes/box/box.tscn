@@ -106,6 +106,24 @@ script = ExtResource("8_8rqxp")
 [node name="Exploding" type="Node" parent="StateMachine"]
 script = ExtResource("9_ssejs")
 
+[node name="TopSide" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="TopSide"]
+position = Vector2(0, -64.5)
+shape = SubResource("RectangleShape2D_lxx8y")
+
+[node name="RightSide" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="RightSide"]
+position = Vector2(64.5, 0)
+shape = SubResource("RectangleShape2D_dxauu")
+
 [node name="BottomSide" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
@@ -123,14 +141,3 @@ collision_mask = 2
 [node name="CollisionShape" type="CollisionShape2D" parent="LeftSide"]
 position = Vector2(-64.5, 0)
 shape = SubResource("RectangleShape2D_dxauu")
-
-[node name="RightSide" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape" type="CollisionShape2D" parent="RightSide"]
-position = Vector2(64.5, 0)
-shape = SubResource("RectangleShape2D_dxauu")
-
-[connection signal="body_entered" from="BottomSide" to="." method="_on_bottom_side_body_entered"]

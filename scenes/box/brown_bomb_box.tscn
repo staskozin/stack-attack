@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://djdk0qxuywlp6"]
+
+[ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_dg2uv"]
+[ext_resource type="Script" path="res://scripts/bomb_box.gd" id="2_yx71l"]
+[ext_resource type="Texture2D" uid="uid://delpurblqt7gk" path="res://assets/sprites/box/brown_bomb.png" id="3_j8can"]
+[ext_resource type="Texture2D" uid="uid://c3qkarqlmww7y" path="res://assets/sprites/box/brown_piece.png" id="4_uns77"]
+
+[node name="BrownBombBox" instance=ExtResource("1_dg2uv")]
+script = ExtResource("2_yx71l")
+is_consumable = true
+textures = Array[CompressedTexture2D]([ExtResource("3_j8can")])
+explosion_texture = ExtResource("4_uns77")
+color = "brown"

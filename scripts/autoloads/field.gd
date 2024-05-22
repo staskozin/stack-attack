@@ -76,7 +76,7 @@ func clusterize_boxes_by_color() -> Dictionary:
 			visited[i].append(false)
 	for x in range(width):
 		for y in range(height):
-			if not visited[x][y] and field[x][y] is Box:
+			if not visited[x][y] and field[x][y] is Box and field[x][y].color != "nocolor":
 				var color: String = field[x][y].color
 				var cluster: Array = []
 				dfs(x, y, color, cluster, visited)

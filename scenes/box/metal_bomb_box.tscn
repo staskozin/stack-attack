@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0bslitt5d5je"]
+
+[ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_jea5q"]
+[ext_resource type="Texture2D" uid="uid://lw3djhh37d8r" path="res://assets/sprites/box/metal_bomb.png" id="2_ivosy"]
+[ext_resource type="Script" path="res://scripts/bomb_box.gd" id="2_x3jg4"]
+[ext_resource type="Texture2D" uid="uid://caac2kc7fjqop" path="res://assets/sprites/box/metal_piece.png" id="3_tm1rx"]
+
+[node name="MetalBombBox" instance=ExtResource("1_jea5q")]
+script = ExtResource("2_x3jg4")
+is_consumable = true
+textures = Array[CompressedTexture2D]([ExtResource("2_ivosy")])
+explosion_texture = ExtResource("3_tm1rx")
+color = "metal"

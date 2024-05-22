@@ -5,10 +5,11 @@ extends AnimatableBody2D
 @export var speed: int = 200
 ## Если ящик тяжелый, то его нельзя толкать
 @export var is_heavy: bool = false
+@export var is_consumable: bool = false
 @export var textures: Array[CompressedTexture2D]
 @export var explosion_texture: CompressedTexture2D
 ## Уникален для каждого ящика во всей игре
-@export var color: String
+@export var color: String = "nocolor"
 
 var x: int
 var y: int
@@ -21,12 +22,19 @@ var texture: CompressedTexture2D
 
 
 func _ready() -> void:
-	%LeftSide.body_entered.connect(_on_left_side_body_entered)
-	%RightSide.body_entered.connect(_on_right_side_body_entered)
-	%LeftSide.body_exited.connect(_on_left_side_body_exited)
-	%RightSide.body_exited.connect(_on_right_side_body_exited)
 	$Texture.texture = texture
 	$Explosion.texture = explosion_texture
+	if is_consumable:
+		%TopSide.body_entered.connect(_on_any_area_body_entered)
+		%RightSide.body_entered.connect(_on_any_area_body_entered)
+		%LeftSide.body_entered.connect(_on_any_area_body_entered)
+		%BottomSide.body_entered.connect(_on_any_area_body_entered)
+	else:
+		%LeftSide.body_entered.connect(_on_left_side_body_entered)
+		%RightSide.body_entered.connect(_on_right_side_body_entered)
+		%LeftSide.body_exited.connect(_on_left_side_body_exited)
+		%RightSide.body_exited.connect(_on_right_side_body_exited)
+		%BottomSide.body_entered.connect(_on_bottom_side_body_entered)
 
 
 func init():
@@ -79,3 +87,13 @@ func _on_right_side_body_exited(body: PhysicsBody2D) -> void:
 	if body.name == "Player":
 		player_on_right = false
 		player = null
+
+
+func on_consume():
+	print("Надо переопределить метод on_consume")
+
+
+func _on_any_area_body_entered(body: PhysicsBody2D) -> void:
+	if body.name == "Player":
+		on_consume()
+		destroy()

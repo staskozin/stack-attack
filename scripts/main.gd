@@ -26,6 +26,30 @@ var drop_pool: Array[Dictionary] = [
 		"object": preload("res://scenes/box/metal_box.tscn"),
 		"weight": 1
 	},
+	{
+		"object": preload("res://scenes/box/red_bomb_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/green_bomb_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/blue_bomb_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/purple_bomb_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/brown_bomb_box.tscn"),
+		"weight": 1
+	},
+	{
+		"object": preload("res://scenes/box/mega_bomb_box.tscn"),
+		"weight": 1
+	},
 ]
 
 
