@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bblfjdph65yk4"]
+[gd_scene load_steps=15 format=3 uid="uid://bblfjdph65yk4"]
 
 [ext_resource type="Script" path="res://scripts/box.gd" id="1_c0qjp"]
 [ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/sprites/box/brown0.png" id="2_v0i26"]
@@ -33,10 +33,13 @@ scale_max = 1.6
 collision_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxx8y"]
-size = Vector2(122, 1)
+size = Vector2(122, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxauu"]
 size = Vector2(1, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_undih"]
+size = Vector2(122, 1)
 
 [node name="Box" type="AnimatableBody2D"]
 collision_mask = 0
@@ -112,7 +115,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape2D" parent="TopSide"]
-position = Vector2(0, -64.5)
+position = Vector2(0, -66)
 shape = SubResource("RectangleShape2D_lxx8y")
 
 [node name="RightSide" type="Area2D" parent="."]
@@ -131,7 +134,7 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape2D" parent="BottomSide"]
 position = Vector2(0, 64.5)
-shape = SubResource("RectangleShape2D_lxx8y")
+shape = SubResource("RectangleShape2D_undih")
 
 [node name="LeftSide" type="Area2D" parent="."]
 unique_name_in_owner = true
