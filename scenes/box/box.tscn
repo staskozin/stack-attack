@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bblfjdph65yk4"]
+[gd_scene load_steps=14 format=3 uid="uid://bblfjdph65yk4"]
 
 [ext_resource type="Script" path="res://scripts/box.gd" id="1_c0qjp"]
 [ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/sprites/box/brown0.png" id="2_v0i26"]
-[ext_resource type="Texture2D" uid="uid://bb3mf27vb76v0" path="res://assets/sprites/box/brown3.png" id="3_x52lm"]
+[ext_resource type="Texture2D" uid="uid://c3qkarqlmww7y" path="res://assets/sprites/box/brown_piece.png" id="3_rhssy"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="4_jv8gc"]
 [ext_resource type="Script" path="res://scripts/states/box/idle.gd" id="5_fb50i"]
 [ext_resource type="Script" path="res://scripts/states/box/move_down.gd" id="6_t4yli"]
@@ -12,23 +12,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dehl2"]
 size = Vector2(128, 128)
-
-[sub_resource type="Curve" id="Curve_cajyl"]
-_data = [Vector2(0, 0.307692), 0.0, 0.0, 0, 0, Vector2(1, 0.307692), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_gs38i"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_ggfqw"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_73vgd"]
-curve_x = SubResource("Curve_cajyl")
-curve_y = SubResource("Curve_gs38i")
-curve_z = SubResource("Curve_ggfqw")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jg4u5"]
 particle_flag_disable_z = true
@@ -45,9 +28,8 @@ angular_velocity_max = 100.0
 gravity = Vector3(0, 800, 0)
 linear_accel_min = 1.0
 linear_accel_max = 1.0
-scale_min = 0.6
-scale_max = 0.8
-scale_curve = SubResource("CurveXYZTexture_73vgd")
+scale_min = 1.4
+scale_max = 1.6
 collision_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxx8y"]
@@ -71,7 +53,7 @@ z_index = 4096
 emitting = false
 amount = 7
 process_material = SubResource("ParticleProcessMaterial_jg4u5")
-texture = ExtResource("3_x52lm")
+texture = ExtResource("3_rhssy")
 lifetime = 3.0
 one_shot = true
 explosiveness = 1.0

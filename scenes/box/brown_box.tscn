@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://32yf57cne2ry"]
+[gd_scene load_steps=7 format=3 uid="uid://32yf57cne2ry"]
 
 [ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_v6e6x"]
 [ext_resource type="Texture2D" uid="uid://m7q2qhtig51t" path="res://assets/sprites/box/brown0.png" id="2_oti2d"]
 [ext_resource type="Texture2D" uid="uid://6rlicb60qvuq" path="res://assets/sprites/box/brown1.png" id="3_runuw"]
 [ext_resource type="Texture2D" uid="uid://b8snr0asqjath" path="res://assets/sprites/box/brown2.png" id="4_n25jq"]
 [ext_resource type="Texture2D" uid="uid://bb3mf27vb76v0" path="res://assets/sprites/box/brown3.png" id="5_4us1n"]
+[ext_resource type="Texture2D" uid="uid://c3qkarqlmww7y" path="res://assets/sprites/box/brown_piece.png" id="6_nbtc6"]
 
 [node name="BrownBox" instance=ExtResource("1_v6e6x")]
 textures = Array[CompressedTexture2D]([ExtResource("2_oti2d"), ExtResource("3_runuw"), ExtResource("4_n25jq"), ExtResource("5_4us1n")])
-explosion_texture = ExtResource("5_4us1n")
+explosion_texture = ExtResource("6_nbtc6")
 color = "brown"

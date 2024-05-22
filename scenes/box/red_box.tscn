@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7o344scnql1p"]
+[gd_scene load_steps=7 format=3 uid="uid://b7o344scnql1p"]
 
 [ext_resource type="PackedScene" uid="uid://bblfjdph65yk4" path="res://scenes/box/box.tscn" id="1_5kmcu"]
 [ext_resource type="Texture2D" uid="uid://cxhj5pj0pa68a" path="res://assets/sprites/box/red0.png" id="2_4l2y3"]
 [ext_resource type="Texture2D" uid="uid://c2gakljm1ljxt" path="res://assets/sprites/box/red1.png" id="3_t4oao"]
 [ext_resource type="Texture2D" uid="uid://nyumyerksxm" path="res://assets/sprites/box/red2.png" id="4_yvfug"]
 [ext_resource type="Texture2D" uid="uid://ce8ip53kccuif" path="res://assets/sprites/box/red3.png" id="5_esqyp"]
+[ext_resource type="Texture2D" uid="uid://bhek3vyc8wlsf" path="res://assets/sprites/box/red_piece.png" id="6_5y7uh"]
 
 [node name="RedBox" instance=ExtResource("1_5kmcu")]
 textures = Array[CompressedTexture2D]([ExtResource("2_4l2y3"), ExtResource("3_t4oao"), ExtResource("4_yvfug"), ExtResource("5_esqyp")])
-explosion_texture = ExtResource("5_esqyp")
+explosion_texture = ExtResource("6_5y7uh")
 color = "red"
