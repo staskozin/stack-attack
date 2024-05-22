@@ -30,7 +30,6 @@ var drop_pool: Array[Dictionary] = [
 
 
 func _ready() -> void:
-	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
