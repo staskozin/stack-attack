@@ -1,7 +1,7 @@
 extends Node
 
 
-var object_pool: Array[Dictionary] = [
+var drop_pool: Array[Dictionary] = [
 	{
 		"object": preload("res://scenes/box/red_box.tscn"),
 		"weight": 1
@@ -44,5 +44,5 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_spawner_timeout() -> void:
 	if not Field.get_legal_columns().is_empty():
 		var crane: Node2D = preload("res://scenes/crane.tscn").instantiate()
-		crane.init(object_pool)
+		crane.init(drop_pool)
 		%Cranes.add_child(crane)
