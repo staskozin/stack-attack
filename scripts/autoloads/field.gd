@@ -39,14 +39,14 @@ func move(object: AnimatableBody2D, to: Vector2i) -> void:
 # TODO: подумать как начислять очки
 
 func destroy_matching_boxes() -> void:
-	for b in get_full_rows_of_boxes():
-		b.destroy()
 	var clusters: Dictionary = clusterize_boxes_by_color()
 	for color in clusters.keys():
 		for cluster in clusters[color]:
 			if len(cluster) >= 3 and cluster.all(func (b: Box): return b.is_in_state("Idle")):
 				for b in cluster:
 					b.destroy()
+	for b in get_full_rows_of_boxes():
+		b.destroy()
 
 
 func get_full_rows_of_boxes() -> Array:
