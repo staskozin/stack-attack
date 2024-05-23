@@ -50,9 +50,12 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 
 
-func init(drop_pool: Array[Dictionary]) -> void:
-	# TODO: По крутому алгоритму выбирать случайный объект по весу, но потом
-	selected = drop_pool.pick_random()["object"].instantiate()
+func init(drop_pool: Array[Dictionary], total_weight: float) -> void:
+	var roll: float = randf_range(0.0, total_weight)
+	for d in drop_pool:
+		if d["acc_weight"] > roll:
+			selected = d["object"].instantiate()
+			break
 	selected.init()
 	%BoxTexture.texture = selected.texture
 
