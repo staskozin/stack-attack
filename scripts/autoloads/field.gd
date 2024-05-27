@@ -38,12 +38,29 @@ func move(object: AnimatableBody2D, to: Vector2i) -> void:
 # Уничтожение ящиков
 # TODO: подумать как начислять очки
 
+
+func destroy_all_boxes_of_color(color: String) -> void:
+	for i in range(Field.width):
+		for j in range(Field.height):
+			if Field.field[i][j] is Box \
+			and Field.field[i][j].color == color:
+				Field.field[i][j].destroy()
+
+
 func destroy_matching_boxes() -> void:
 	var clusters: Dictionary = clusterize_boxes_by_color()
 	for color in clusters.keys():
+		var color_destroyed: bool = false
 		for cluster in clusters[color]:
-			if len(cluster) >= 3 and cluster.all(func (b: Box): return b.is_in_state("Idle")):
+			if color_destroyed:
+				break
+			if len(cluster) >= 3 \
+			and cluster.all(func (b: Box): return b.is_in_state("Idle")):
 				for b in cluster:
+					if b.is_bomb:
+						color_destroyed = true
+						destroy_all_boxes_of_color(b.color)
+						break
 					b.destroy()
 	for b in get_full_rows_of_boxes():
 		b.destroy()

@@ -33,7 +33,7 @@ scale_max = 1.6
 collision_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxx8y"]
-size = Vector2(122, 4)
+size = Vector2(128, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxauu"]
 size = Vector2(1, 122)

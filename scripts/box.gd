@@ -6,6 +6,7 @@ extends AnimatableBody2D
 ## Если ящик тяжелый, то его нельзя толкать
 @export var is_heavy: bool = false
 @export var is_consumable: bool = false
+@export var is_bomb: bool = false
 @export var textures: Array[CompressedTexture2D]
 @export var explosion_texture: CompressedTexture2D
 ## Уникален для каждого ящика во всей игре

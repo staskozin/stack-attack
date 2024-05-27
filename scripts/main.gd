@@ -4,27 +4,27 @@ extends Node
 var drop_pool: Array[Dictionary] = [
 	{
 		"object": preload("res://scenes/box/red_box.tscn"),
-		"weight": 20
+		"weight": 18
 	},
 	{
 		"object": preload("res://scenes/box/green_box.tscn"),
-		"weight": 20
+		"weight": 18
 	},
 	{
 		"object": preload("res://scenes/box/blue_box.tscn"),
-		"weight": 20
+		"weight": 18
 	},
 	{
 		"object": preload("res://scenes/box/purple_box.tscn"),
-		"weight": 20
+		"weight": 18
 	},
 	{
 		"object": preload("res://scenes/box/brown_box.tscn"),
-		"weight": 20
+		"weight": 18
 	},
 	{
 		"object": preload("res://scenes/box/metal_box.tscn"),
-		"weight": 20
+		"weight": 18
 	},
 	{
 		"object": preload("res://scenes/box/red_bomb_box.tscn"),
