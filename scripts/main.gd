@@ -54,6 +54,10 @@ var drop_pool: Array[Dictionary] = [
 		"object": preload("res://scenes/box/mega_bomb_box.tscn"),
 		"weight": 0.1
 	},
+	{
+		"object": preload("res://scenes/box/health_box.tscn"),
+		"weight": 5
+	},
 ]
 var total_weight: float = 0.0
 

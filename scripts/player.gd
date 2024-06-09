@@ -82,9 +82,9 @@ func jump() -> void:
 func hit() -> void:
 	health -= 1
 	health_changed.emit(health)
-	if health > 0:
+	if destroy_timer <= 0.0 and health > 0:
 		stun()
-	else:
+	elif health <= 0:
 		die()
 
 
