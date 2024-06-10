@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4ejjvn8xvhi0"]
+[gd_scene load_steps=13 format=3 uid="uid://d4ejjvn8xvhi0"]
 
 [ext_resource type="Texture2D" uid="uid://kr5iyx86eetf" path="res://assets/sprites/background.png" id="1_e46rr"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qxsgs"]
 [ext_resource type="PackedScene" uid="uid://c67ial3utdvgg" path="res://scenes/player.tscn" id="3_vn846"]
+[ext_resource type="Texture2D" uid="uid://d1ffa4hluhcf0" path="res://assets/sprites/ui/arrow_left.svg" id="6_7uq75"]
 [ext_resource type="Texture2D" uid="uid://b81pjq4yiv3fq" path="res://assets/sprites/ui/heart.svg" id="6_b4otl"]
+[ext_resource type="Texture2D" uid="uid://cgisu48nd21h1" path="res://assets/sprites/ui/arrow_up.svg" id="6_kbvu4"]
 [ext_resource type="Script" path="res://scripts/health_ui.gd" id="6_myx0r"]
+[ext_resource type="Texture2D" uid="uid://bs1vsossouwfu" path="res://assets/sprites/ui/arrow_right.svg" id="7_m3of2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0j1e"]
 size = Vector2(192, 952)
@@ -14,6 +17,9 @@ size = Vector2(1920, 129)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jeqbr"]
 polygon = PackedVector2Array(192, 952, 1728, 952, 1728, 0, 1760, 0, 1755, 978, 180, 970, 175, 0, 192, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eeld"]
+size = Vector2(60, 60)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qxsgs")
@@ -75,19 +81,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Health" type="HBoxContainer" parent="UILayer/UI"]
-modulate = Color(1, 1, 1, 0.75)
+[node name="Health" type="VBoxContainer" parent="UILayer/UI"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -92.0
-offset_right = -32.0
-offset_bottom = -28.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -112.0
+offset_right = 133.0
+offset_bottom = 112.0
+grow_vertical = 2
 theme_override_constants/separation = 16
 script = ExtResource("6_myx0r")
 
@@ -105,5 +108,26 @@ texture = ExtResource("6_b4otl")
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("6_b4otl")
+
+[node name="JumpButton" type="TouchScreenButton" parent="UILayer"]
+position = Vector2(1788, 939)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("6_kbvu4")
+shape = SubResource("RectangleShape2D_3eeld")
+action = "input_up"
+
+[node name="LeftButton" type="TouchScreenButton" parent="UILayer"]
+position = Vector2(39, 948)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("6_7uq75")
+shape = SubResource("RectangleShape2D_3eeld")
+action = "input_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="UILayer"]
+position = Vector2(219, 948)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("7_m3of2")
+shape = SubResource("RectangleShape2D_3eeld")
+action = "input_right"
 
 [connection signal="timeout" from="Spawner" to="." method="_on_spawner_timeout"]

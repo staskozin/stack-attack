@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends VBoxContainer
 
 
 @onready var heart: Resource = preload("res://assets/sprites/ui/heart.svg")
