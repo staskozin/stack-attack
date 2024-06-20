@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://chf2sil8dxfp5"]
+
+[ext_resource type="Texture2D" uid="uid://bvbliiyo3i7pr" path="res://assets/sprites/player/helmet.png" id="1_f1uui"]
+[ext_resource type="Script" path="res://scripts/helmet.gd" id="2_i0tn6"]
+
+[node name="Helmet" type="Sprite2D"]
+position = Vector2(4, -75)
+texture = ExtResource("1_f1uui")
+script = ExtResource("2_i0tn6")

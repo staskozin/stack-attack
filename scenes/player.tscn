@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c67ial3utdvgg"]
+[gd_scene load_steps=27 format=3 uid="uid://c67ial3utdvgg"]
 
 [ext_resource type="Texture2D" uid="uid://7grohg6modgq" path="res://assets/sprites/player/idle.png" id="1_f4rx6"]
 [ext_resource type="Texture2D" uid="uid://bark6563ifm6j" path="res://assets/sprites/player/walk1.png" id="2_47wev"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cw1bwa1oksje1" path="res://scenes/sound_queue.tscn" id="9_66stx"]
 [ext_resource type="Texture2D" uid="uid://bly6c1xggbph7" path="res://assets/sprites/player/walk6.png" id="9_u4isl"]
 [ext_resource type="AudioStream" uid="uid://b8ah53npy6ij5" path="res://assets/sounds/footsteps/footstep_1.ogg" id="10_sfdij"]
+[ext_resource type="PackedScene" uid="uid://chf2sil8dxfp5" path="res://scenes/helmet.tscn" id="11_mm68l"]
 [ext_resource type="AudioStream" uid="uid://coiwgphqsk3g4" path="res://assets/sounds/footsteps/footstep_2.ogg" id="11_p268t"]
 [ext_resource type="AudioStream" uid="uid://blyybtvpfrip5" path="res://assets/sounds/footsteps/footstep_3.ogg" id="12_mx1s5"]
 [ext_resource type="AudioStream" uid="uid://dk3h7we3sx3ac" path="res://assets/sounds/jumps/jump.ogg" id="13_hsccf"]
@@ -132,7 +133,6 @@ jump_time_to_descent = 0.3
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_beetg")
 animation = &"stun"
-frame_progress = 0.496486
 
 [node name="Eyes" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -149,6 +149,9 @@ rotation = 2.35619
 texture = ExtResource("8_ufx2b")
 offset = Vector2(0, -1)
 flip_h = true
+
+[node name="Helmet" parent="." instance=ExtResource("11_mm68l")]
+unique_name_in_owner = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_imvlw")

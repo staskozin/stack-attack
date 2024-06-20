@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4ejjvn8xvhi0"]
+[gd_scene load_steps=11 format=3 uid="uid://d4ejjvn8xvhi0"]
 
 [ext_resource type="Texture2D" uid="uid://kr5iyx86eetf" path="res://assets/sprites/background.png" id="1_e46rr"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qxsgs"]
 [ext_resource type="PackedScene" uid="uid://c67ial3utdvgg" path="res://scenes/player.tscn" id="3_vn846"]
 [ext_resource type="Texture2D" uid="uid://d1ffa4hluhcf0" path="res://assets/sprites/ui/arrow_left.svg" id="6_7uq75"]
-[ext_resource type="Texture2D" uid="uid://b81pjq4yiv3fq" path="res://assets/sprites/ui/heart.svg" id="6_b4otl"]
 [ext_resource type="Texture2D" uid="uid://cgisu48nd21h1" path="res://assets/sprites/ui/arrow_up.svg" id="6_kbvu4"]
-[ext_resource type="Script" path="res://scripts/health_ui.gd" id="6_myx0r"]
 [ext_resource type="Texture2D" uid="uid://bs1vsossouwfu" path="res://assets/sprites/ui/arrow_right.svg" id="7_m3of2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0j1e"]
@@ -72,42 +70,6 @@ wait_time = 2.0
 autostart = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="UI" type="Control" parent="UILayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Health" type="VBoxContainer" parent="UILayer/UI"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 59.0
-offset_top = -112.0
-offset_right = 133.0
-offset_bottom = 112.0
-grow_vertical = 2
-theme_override_constants/separation = 16
-script = ExtResource("6_myx0r")
-
-[node name="Heart1" type="TextureRect" parent="UILayer/UI/Health"]
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("6_b4otl")
-
-[node name="Heart2" type="TextureRect" parent="UILayer/UI/Health"]
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("6_b4otl")
-
-[node name="Heart3" type="TextureRect" parent="UILayer/UI/Health"]
-layout_mode = 2
-size_flags_vertical = 8
-texture = ExtResource("6_b4otl")
 
 [node name="JumpButton" type="TouchScreenButton" parent="UILayer"]
 position = Vector2(1788, 939)

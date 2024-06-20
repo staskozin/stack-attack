@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2c7a8d7867jx"
-path="res://.godot/imported/empty_heart.svg-2f5a40603fe3e9bfa5fd3e26e18775b9.ctex"
+uid="uid://hq8cvlybo4ub"
+path="res://.godot/imported/helmet_side.png-ac0684132e17b53850020834b5818c57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/ui/empty_heart.svg"
-dest_files=["res://.godot/imported/empty_heart.svg-2f5a40603fe3e9bfa5fd3e26e18775b9.ctex"]
+source_file="res://assets/sprites/player/helmet_side.png"
+dest_files=["res://.godot/imported/helmet_side.png-ac0684132e17b53850020834b5818c57.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
