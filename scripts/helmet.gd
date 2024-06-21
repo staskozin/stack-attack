@@ -1,13 +1,13 @@
-extends Sprite2D
+extends Node2D
 
 
 @export var side: bool = false:
 	set(value):
 		if value:
-			texture = cracked_helmet_side if is_cracked else helmet_side
-			position.x = -4 if flip_h else 4
+			$Sprite.texture = cracked_helmet_side if is_cracked else helmet_side
+			position.x = -4 if $Sprite.flip_h else 4
 		else:
-			texture = cracked_helmet if is_cracked else helmet
+			$Sprite.texture = cracked_helmet if is_cracked else helmet
 			position.x = 0
 		side = value
 
@@ -26,12 +26,13 @@ func _ready() -> void:
 
 func change(h: int) -> void:
 	if h >= 3:
-		visible = true
-		texture = helmet_side if side else helmet
+		$Sprite.visible = true
+		$Sprite.texture = helmet_side if side else helmet
 		is_cracked = false
 	elif h == 2:
-		visible = true
-		texture = cracked_helmet_side if side else cracked_helmet
+		$Sprite.visible = true
+		$Sprite.texture = cracked_helmet_side if side else cracked_helmet
 		is_cracked = true
 	else:
-		visible = false
+		$Explosion.emitting = true
+		$Sprite.visible = false

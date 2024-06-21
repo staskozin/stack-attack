@@ -120,7 +120,7 @@ func _get_input_velocity() -> float:
 	if Input.is_action_pressed("input_left"):
 		%Sprite.play("walk")
 		%Sprite.flip_h = true
-		%Helmet.flip_h = true
+		%Helmet.get_node("Sprite").flip_h = true
 		%Helmet.side = true
 		if _on_floor:
 			%Footsteps.play()
@@ -129,7 +129,7 @@ func _get_input_velocity() -> float:
 	elif Input.is_action_pressed("input_right"):
 		%Sprite.play("walk")
 		%Sprite.flip_h = false
-		%Helmet.flip_h = false
+		%Helmet.get_node("Sprite").flip_h = false
 		%Helmet.side = true
 		if _on_floor:
 			%Footsteps.play()
@@ -138,7 +138,7 @@ func _get_input_velocity() -> float:
 	else:
 		%Sprite.play("default")
 		%Sprite.flip_h = false
-		%Helmet.flip_h = false
+		%Helmet.get_node("Sprite").flip_h = false
 		%Helmet.side = false
 		moving_left = false
 		moving_right = false
